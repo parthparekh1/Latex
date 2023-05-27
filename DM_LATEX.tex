@@ -1,0 +1,346 @@
+\documentclass[23pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr,lipsum}
+\usepackage{textcomp}
+\usepackage{titling}
+\usepackage{lastpage}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{pgfplots}
+\usepackage{hyperref}
+\usepackage{natbib}
+\pgfplotsset{width=10cm,compat=1.9}
+\pagestyle{fancy}
+\fancyfoot[R]{Page \thepage \hspace{1pt} of \pageref{LastPage}}
+\usepackage{graphicx} % Required for inserting images
+\graphicspath{ {./images/} }
+
+\begin{document}
+\fancyhead{} % clear all header fields
+\fancyhead[RO,LE]{\includegraphics[scale=0.17]{Screenshot 2023-05-24 at 6.36.23 PM.png}}
+\date{ }
+\begin{center}
+\huge \textbf{DM PROJECT : FINDING THE SHORTEST PATH USING GRAPH THEORY AND DIJKSTRA'S ALGORITHM} \\          
+\includegraphics[scale=0.7]{Screenshot_2023-05-22-22-52-52-205-edit_com.google.android.apps.docs.jpg} \\
+\Large
+\textbf{COURSE: SC205}\\
+\textbf{INSTRUCTOR: PROF. MANISH GUPTA & PROF. MANOJ KUMAR RAUT}
+
+\textbf{
+MADE BY:\\
+PARTH PAREKH(202201200)\\
+MEET ANDHARIA(202201145)\\
+NISHANK KANSARA(202201227)\\
+DEV DODIYA(202201153)\\
+MALHAR VAGHASIYA(202201183)\\
+AKSHAT JOSHI(202201185)\\
+}
+\end{center}
+%\maketitle\thispagestyle{fancy}
+\newpage
+\begin{center}
+\centering  \item \textbf{\huge\underline{Contents:-}} 
+\end{center}
+
+\section*{\hyperlink{target:Description}{\textcolor{blue}
+{\underline{\bold{1.Description}}}}}\label{sec:Description}
+
+\section*{\hyperlink{target:Graph Theory}{\textcolor{blue}
+{\underline{\bold{2.Graph Theory}}}}}\label{sec:Graph Theory}
+\\
+
+\section*{\hyperlink{target:Formulation}{\textcolor{blue}
+{\underline{\bold{3.Formulation(Dijkstra's Algorithm)}}}}}\label{sec:Formulation}
+
+\section*{\hyperlink{target:Graph Representation}{\textcolor{blue}
+{\underline{\bold{4.Graph Representation}}}}}\label{sec:Graph Representation}
+
+\section*{\hyperlink{target:Shortest Path Calculation}{\textcolor{blue}
+{\underline{\bold{5.Shortest Path Calculation}}}}}\label{sec:Shortest Path Calculation}
+
+\section*{\hyperlink{target:Shortest Path Retrieval}{\textcolor{blue}
+{\underline{\bold{6.Shortest Path Retrieval}}}}}\label{sec:Shortest Path Retrieval}
+
+\section*{\hyperlink{target:SOLUTION}{\textcolor{blue}
+{\underline{\bold{7.SOLUTION(EXAMPLE)}}}}}\label{sec:SOLUTION}
+
+\section*{\hyperlink{target:CODE}{\textcolor{blue}
+{\underline{\bold{8.CODE}}}}}\label{sec:CODE}
+
+\section*{\hyperlink{target:REFERENCES}{\textcolor{blue}
+{\underline{\bold{9.REFERENCES}}}}}\label{sec:REFERENCES}
+
+\newpage
+\begin{center}
+\centering  \item \textbf{\huge\underline{Motivation:-}} 
+\end{center}
+\Large
+$\bullet$ We came across many ideas of Graph theory, out of which the one which caught the attention of all was finding the shortest distance in Google maps. \\
+$\bullet$ Being one of the interesting topics and having the curiosity to know the algorithm behind this beautiful task, we decided to work on this topic.
+
+\hypertarget{target:Description}{}
+
+\begin{center}
+\centering  \item \textbf{\huge\underline{Description:-}}
+\end{center}
+\Large
+$\bullet$ In Google Maps, finding the shortest path involves determining the most efficient route between two locations on a road network. This problem can be solved using graph theory and algorithms. The road network is represented as a graph, with intersections as vertices, and roads as edges. Each road segment representing distance or travel time is assigned a weight.
+\\
+$\bullet$ Using Dijkstra's algorithm, Google Maps calculates the shortest path. The users are provided the output in a user-friendly format, providing step-by-step directions and estimated travel time.
+\begin{center}
+\cite{lanning2014dijkstra}
+    \includegraphics[scale=0.4]{WhatsApp Image 2023-05-21 at 6.43.01 PM.jpeg}
+\end{center}
+\hypertarget{target:Graph Theory}{}
+\begin{center}
+\centering  \item \textbf{\huge\underline{Graph Theory:-}}
+\end{center}
+Graph theory is a branch of mathematics that studies the relationships and properties of graphs. A graph consists of a set of vertices connected by edges. 
+
+Some of the key concepts of graph theory used in our application are as follows :
+
+$\bullet$ Vertex: A vertex represents a point or an entity in a graph.
+
+$\bullet$ Edge: An edge connects two vertices and represents a relationship or connection between them.
+
+$\bullet$ Path: A path is a sequence of vertices connected by edges. It represents a route or a sequence of steps from one vertex to another.
+
+$\bullet$ Weighted Graph: In some graphs, edges may have weights associated with them. These weights can represent distances or any other relevant information. 
+\cite{graphtheoryimage}
+\begin{center}
+\includegraphics[scale=0.7]{ss.png}
+\end{center}
+\hypertarget{target:Formulation}{}
+\begin{center}
+\centering  \item \textbf{\huge\underline{Formulation:-}} 
+\end{center}
+\Large 
+$\bullet$ To formulate the mathematics for finding the shortest path in Google Maps using Dijkstra's algorithm, we can define the problem as follows: \cite{michaels1991applications}
+
+\begin{center}
+\includegraphics[scale=0.5]{algo.png}
+\end{center}
+\hypertarget{target:Graph Representation}{}
+
+\item \textbf{\huge\underline{1.Graph Representation :-}} 
+\\
+\Large
+   $\bullet$ Let G = (V, E) be a weighted directed graph, where V represents the set of vertices (nodes) 	and E represents the set of edges (roads) connecting the vertices.\\
+   $\bullet$ Each edge ‘e’ has a non-negative weight w(e), representing the distance required to traverse that road  segment.\\
+    $\bullet$ Below image represents a Weighted Graph : \cite{graphtheory}\\
+    \begin{center}
+\includegraphics[scale=0.5]{DM Graph.jpeg} 
+\end{center}
+\hypertarget{target:Shortest Path Calculation}{}
+
+\item \textbf{\huge\underline{2.Shortest Path Calculation :-}}  \\
+\Large
+   $\bullet$ Given a starting point s and a destination point t, we want to find the shortest path from s to t in terms of total weight.\\
+   $\bullet$ Define the weight of a path P from s to t as the sum of the weights of the edges in P.\\
+   $\bullet$ Let d(v) be the current shortest distance from s to point v. Initially, d(s) = 0, and for all other 	points v \neq s, d(v) = $\infty$ . \\
+   $\bullet$ We maintain a priority queue Q of vertices, sorted by their current shortest distance d(v).\\
+   $\bullet$ Initialise Q with all points in V.\\
+   $\bullet$ Repeat until Q is empty:\\
+   $\bullet$ Extract the vertex u with the minimum d(u) from Q.\\
+   $\bullet$ For each neighbour v of u:\\
+   $\bullet$ Update the shortest distance d(v) if the path through u yields a smaller distance: d(v) = 		min(d(v), d(u) + w(uv)).\\
+   $\bullet$ Once the destination point t is reached or there are no more points in Q, the algorithm 	terminates.\\
+
+\hypertarget{target:Shortest Path Retrieval}{}
+
+   \item \textbf{\huge\underline{3.Shortest Path Retrieval :-}} \\
+   \Large
+   $\bullet$ After the algorithm terminates, the shortest path from s to t can be obtained by tracing 	back from t to s using the stored predecessor information.\\
+   $\bullet$ Starting from t, follow the predecessors until reaching s, and reverse the order to obtain the path.\\
+
+   \hypertarget{target:SOLUTION}{}
+   
+   \begin{center}
+   \centering  \item \textbf{\huge\underline{SOLUTION:-}}  \\
+   \end{center}
+LET US CONSIDER AN EXAMPLE EXPLAINING THIS ALGORITHM :
+\begin{center}
+\includegraphics[scale=0.2]{WhatsApp Image 2023-05-22 at 11.18.26 PM.jpeg}
+\end{center}
+\Large
+\textbf{Step 1} : We initialise a table .Let all the distance Start from $\infty$
+\begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-22 at 11.22.39 PM.jpeg}
+\end{center}
+
+\textbf{Step 2} : We start visiting points from the starting point (A)\\
+	$\bullet$ We keep track of the nodes we have visited and have not visited yet in two sets :
+		
+		visited = \{  \} = \o{} \\
+		not-visited = \{ A , B, C, D, E, F, G \}
+
+\textbf{Step 3} : Visit each nodes according to the rules we discussed before
+
+	$\bullet$ Visit the point with the smallest know distance. Right now every point has a distance of infinity, except for A itself. So, we’ll visit node A.
+	
+	$\bullet$ Examine its neighbouring nodes and calculate the distance of them from the node we are visiting
+		Distance from node B = 0 + 4 = 4
+		Distance from node C =  0 + 3 = 3
+  \begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-22 at 11.28.20 PM.jpeg}
+\end{center}
+
+$\bullet$ Check if the Calculated distance is less than the currently known shortest distance 
+		$$ 4 < \infty $$ \&
+		$$ 3 < \infty $$
+	    if it is less than the currently-known one then update the currently know distance to this shortest distance and add the previous to be A since that was where we came from.\\
+     \underline{UPDATED TABLE}:
+
+       \begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-22 at 11.32.14 PM.jpeg}
+\end{center}
+
+\textbf{Step 4} :  Repeat the Steps!
+		
+		visited = \{ A \} \\
+		not-visited = \{ B, C, D, E, F, G \}
+	
+	$\bullet$ Next look at the node with the smallest distance that has not been visited yet. In this case, node C has 	   a distance of 3, which is the smallest distance of all the unvisited nodes. So node C becomes our current  point.
+
+	$\bullet$ Repeat the same procedure as before : Check the unvisited neighbours of C, and calculate their shortest path from our origin node A
+
+	$\bullet$  The unvisited neighbours of node C are nodes B, D and F.
+\begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-22 at 11.40.05 PM.jpeg}
+\end{center}
+ 
+	Distance to B = 3+5=8
+	Distance to D = 3+8=11
+	Distance to F = 3+4=7
+	Compare with current values 
+	    $$ B: 8 > 4 $$ 
+		$$ D: 11 < \infty $$ 
+		$$ F: 7 < \infty $$ 
+
+	$\bullet$  Notice that the Distance to D and F via node C which is 11 and 7 respectively are shorter than our currently known shortest distance which is $\infty$
+
+	$\bullet$  We can update the shortest distance and the previous vertex in the table for D and F since we found a better path
+
+ \begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-22 at 11.41.12 PM.jpeg}
+\end{center}
+\\
+        Visited = \{ A,C \} \\
+	Not-visited = \{ B,D,E,F,G \}
+
+	The next current vertex is B since it has a smallest distance which hasn't been visited yet which is 4.
+	The unvisited neighbours of node B are nodes D and E \\
+        Distance to D = 4+4=8 \\
+	Distance to E = 4+6 =10
+
+\begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-22 at 11.45.20 PM.jpeg}
+\end{center}
+
+Compare with current values 
+     $$ D : 8 < 11 $$
+     $$ E : 10 < \infty $$
+
+The Distance to D and E via node B which is 8 and 10 respectively are shorter than our currently known shortest distance which is 11 and $\infty$ 
+
+\begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-22 at 11.48.50 PM.jpeg}
+\end{center}
+
+Visited = \{ A,C,B \} \\
+		Not-visited = \{ D,E,F,G \}
+ 
+	$\bullet$ The next unvisited node with the shortest path is F so, F is our next current vertex and the distance is 7 \\
+	$\bullet$ The unvisited neighbours of node F is node G \\
+	$\bullet$ Distance to G = 7+10= 17 compare with current value 
+			$$ G : 17 < \infty $$
+	$\bullet$ The Distance to G via node F which is 17 is shorter than our currently known shortest distance which is $\infty$. \\
+ 
+\begin{center}
+\includegraphics[scale=0.5]{WhatsApp Image 2023-05-22 at 11.51.28 PM.jpeg}
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-22 at 11.52.17 PM.jpeg}
+\end{center}
+
+Visited = \{ A,B,C,F \}
+Not-visited = \{ D,E,G \}
+
+	$\bullet$ Next we choose D as our next current vertex since it has the shortest path among the unvisited nodes which is 8\\
+	$\bullet$ The unvisited neighbours of node D are nodes E and G\\
+
+		Distance to E = 8+2=10
+		Distance to G = 8+3=11
+
+	$\bullet$ Compare with current value 
+
+		$$ E : 10 = 10 $$
+		$$ G : 11 < 17  $$
+
+ 	$\bullet$ As you can see the Distance to G via node D which is 11 is shorter than our currently known shortest distance which is 17
+
+\begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-23 at 12.02.17 AM.jpeg}
+\end{center}
+
+\begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-23 at 12.03.21 AM.jpeg}
+\end{center}
+
+
+	Visited = \{ A,B,C,D,F \} 
+	Not-visited  = \{ E,G \}
+
+	$\bullet$ E has the shortest path among the unvisited nodes which is 10 so we choose E as our next current vertex \\
+	$\bullet$ The unvisited neighbours of node E is node G
+		Distance to G = 10 +3=13 \\
+
+		Compare with current value
+		$$   G: 13 > 11   $$ 
+
+	$\bullet$ The Distance to G via node E which is 13 is not shorter than our currently known shortest distance which is 11. So, we don't update the table.\\
+ \begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-23 at 12.04.44 AM.jpeg}
+\end{center}
+
+ 		Visited = \{ A,B,C,D,E,F \} \\
+		Not-visited = \{ G \} \\
+
+	$\bullet$ The only remaining unvisited node is G, however all of its neighbouring nodes have already been visited so there is nothing for us to examine here.
+
+\begin{center}
+\includegraphics[scale=0.3]{WhatsApp Image 2023-05-23 at 12.05.43 AM.jpeg}
+\end{center}
+\Large
+ 	$\bullet$ Dijkstra's algorithm gives us the shortest path from starting node to every single node By following the previous vertex of any node, back up to the start we can retrace the shortest path. \\
+     $\bullet$ So, to find the shortest path from A to G we start at G and trace back to the starting node \\
+
+	$\bullet$ So the shortest path from A to G is 
+            
+		$$ (A->A) is A $$ 
+		$$ A-> B-> D->G $$ 
+
+	$\bullet$ And the distance between both the nodes is (you can check the distance from the table or just add them up again!)=0+4+4+3 = 11 km.
+
+ \hypertarget{target:CODE}{}
+ 
+ \begin{center}
+  \centering  \item \textbf{\huge\underline{CODE:-}} \\
+ \end{center}
+ $\bullet$ The following is the code link of Dijkstra's algorithm for the above given example:\\
+ \small https://github.com/parthparekh1/parthparekh/blob/main/dij.txt
+ \\
+ \begin{center}
+ \centering  \item \textbf{\huge\underline{Conclusion:-}} \\
+\end{center}
+$\bullet$ Hence using Dijkstra’s Algorithm and Graph Theory which are the sub topics of Discrete Mathematics we can efficiently calculate the shortest path between two vertices(points) in Google Maps.
+\newpage
+ \\
+ \hypertarget{target:REFERENCES}{}
+ 
+ \bibliographystyle{plain}
+ \bibliography{references}
+\end{document}
